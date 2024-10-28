@@ -47,7 +47,7 @@ def plot_wordcloud(df, col, color='black', max_words=20, height=200):
     return plt
 
 
-def plot_against_offer_type(df, col, top=10, height=200, width=200):
+def plot_against_offer_type(df, col, top=10, height=200, width=300):
     assert col in ['categorias_en_promo', 'marcas_en_promo', 'publico_objetivo'], 'wrong key'
     keywords = df[col].tolist()
     keywords_flatten = [val for sublist in keywords for val in sublist]

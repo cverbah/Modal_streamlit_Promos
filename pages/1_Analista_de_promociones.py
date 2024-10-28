@@ -18,7 +18,8 @@ st.set_page_config(
 )
 
 st.title(':robot_face: Analista de  Promociones')
-
+st.markdown("<span style='font-size: 20px;'>1 - Aprete el botón Analizar Ofertas para comenzar</span>",
+            unsafe_allow_html=True)
 try:
     with st.spinner('Cargando datos...'):
         df = st.session_state.df
@@ -26,15 +27,16 @@ try:
 except Exception as e:
     st.error(e)
 
-st.subheader("DataFrame:")
-if len(df) > 0:
-    st.dataframe(st.session_state.df.head())
+
+if len(st.session_state.df) > 0:
+
     if st.button('Analizar Ofertas'):
         with st.spinner('Analizando ofertas'):
             st.session_state.df['promo_analysis'] = st.session_state.df['url_img'].apply(lambda row:
                                                                                          analyze_promo_v2(row,
                                                                                                           format=True))
             analyze_data(st.session_state.df)
+            st.subheader("DataFrame:")
             st.dataframe(st.session_state.df)
 
     col1, col2, col3 = st.columns(3, gap='large')
@@ -45,7 +47,8 @@ if len(df) > 0:
             #img_data = list(zip(df_op['url_img'], df_op['position'], df_op['name_img']))
             img_data = list(zip(df_op['posicion'], df_op['nombre_promocion'], df_op['categorias_en_promo'], df_op['publico_objetivo']))
             with st.spinner('Pensando...'):
-                #response = analyze_promo_v4(img_data, promo_type='promociones principales', format=False, model=gcp_model_txt)
+                response = analyze_promo_v4(img_data, promo_type='promociones principales',
+                                            format=False, model=gcp_model)
                 st.write(response)
                 st.success('Ok!')
 
@@ -58,7 +61,8 @@ if len(df) > 0:
             df_og = df[df.tipo_oferta == 'grid_ofertas']
             img_data = list(zip(df_og['posicion'], df_og['nombre_promocion'], df_og['categorias_en_promo'], df_og['publico_objetivo']))
             with st.spinner('Pensando...'):
-                response = analyze_promo_v4(img_data, promo_type='promociones secundarias', format=False, model=gcp_model_txt)
+                response = analyze_promo_v4(img_data, promo_type='promociones secundarias',
+                                            format=False, model=gcp_model)
                 st.write(response)
                 st.success('Ok!')
 
@@ -72,9 +76,13 @@ if len(df) > 0:
             df_lu = df[df.tipo_oferta == 'lo_ultimo']
             img_data = list(zip(df_lu['url_img'], df_lu['posicion'], df_lu['nombre_promocion']))
             with st.spinner('Pensando...'):
-                response = analyze_promo_v3(img_data, promo_type='lo más visto', format=True, model=gcp_model_vision)
+                response = analyze_promo_v3(img_data, promo_type='lo más visto',
+                                            format=True, model=gcp_model)
                 st.write(response)
                 st.success('Ok!')
 
         except Exception as e:
             st.error(e)
+
+else:
+    st.warning('Tala cargada no contiene datos. Intente de nuevo con otra tabla')

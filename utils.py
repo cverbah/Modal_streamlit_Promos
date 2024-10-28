@@ -77,8 +77,92 @@ def analyze_data(df: pd.DataFrame):
     df.drop(columns='promo_analysis', inplace=True)
 
 
+def analyze_promo_v4(img_data, promo_type, format=True, model=gcp_model):
+    """just testing for now : same example from gcp"""
+
+    instructions = f"Instrucciones: La siguiente data corresponde a información relacionada a promociones de un retail de la competencia. \
+                    Estas promociones están segmentadas como: {promo_type} del retail. \
+                    Cada promoción cuenta con la siguiente información:\n \
+                    - posición: número que refleja a la importancia de la promoción  \n \
+                    - promoción: características principales de la promoción  \n \
+                    - categorías: categorías de la promoción  \n \
+                    - público objetivo: potenciales clientes a los que está dirigida la promoción  \n \
+                    Extrae toda la información que puedas de las promociones y has un análisis general que contemple todas las promociones, dando \
+                    una recomendación de que estrategias se podrían utilizar en mi retail sabiendo sobre estas promociones de la competencia. \
+                    Se lo más analítico posible en tu análisis y recomendación"
+
+    try:
+        content_data = [{"type": "text",
+                         "text": f"{instructions}"}]
+        prompt_data = [({"type": "text", "text": f"- posición: {pos}\n \
+                                                   - promoción: {promo}\n \
+                                                   - categorías: {cat}\n \
+                                                   - público objetivo: {target}"})
+                        for pos, promo, cat, target in img_data]
+
+        for pair_data in prompt_data:
+            content_data.extend(pair_data)
+
+        content_data.extend([{"type": "text",
+                              "text": "Entrega la respuesta en formato json: [{'analysis': análisis general,\
+                                       'recommendation': recomendación de estrategia para mi retail}"}])
+
+        message = HumanMessage(
+            content=content_data
+        )
+        response = model.invoke([message]).content
+
+        if format:
+            response = response.replace('```json', '').replace('\n```', '')
+            response = json.loads(response)
+
+        return response
+
+    except Exception as e:
+        print(e)
+        return e
+
+
+def analyze_promo_v3(img_data, promo_type, format=True, model=gcp_model):
+    """just testing for now : same example from gcp"""
+
+    instructions = f"Instrucciones: Las siguientes imágenes contienen promociones de un retail competidor en donde la posición corresponde a la \
+                    relevancia de la promoción. Estas promociones son las ofertas: {promo_type} del retail. \
+                    Extrae toda la información que puedas de las promociones y has un análisis general que contemple todas las promociones, dando \
+                    una recomendación de que estrategias se podrían utilizar en mi retail sabiendo sobre estas promociones de la competencia. \
+                    Se lo más analítico posible en tu análisis y recomendación"
+
+    try:
+        content_data = [{"type": "text",
+                         "text": f"{instructions}"}]
+        prompt_data = [({"type": "text", "text": f"Esta imagén está en la posición {pos} y la promoción esta enfocada en {name}"},
+                        {"type": "image_url", "image_url": img}) for img, pos, name in img_data]
+
+        for pair_data in prompt_data:
+            content_data.extend(pair_data)
+
+        content_data.extend([{"type": "text",
+                              "text": "Entrega la respuesta en formato json: [{'analysis': análisis general,\
+                                       'recommendation': recomendación de estrategia para mi retail}"}])
+
+        message = HumanMessage(
+            content=content_data
+        )
+        response = model.invoke([message]).content
+
+        if format:
+            response = response.replace('```json', '').replace('\n```', '')
+            response = json.loads(response)
+
+        return response
+
+    except Exception as e:
+        print(e)
+        return 'img loading problem'
+
+
 def analyze_promo_v2(image_path, format=True, model=gcp_model):
-    '''' just testing for now : same example from gcp'''
+    """just testing for now : same example from gcp"""
 
     instructions = "Instrucciones: Las siguientes imágenes contienen promociones de retails, extrae información de las promociones.Solo usa la información" \
                    "disponible en las imágenes. Siempre respondes en español y en minúsculas."
