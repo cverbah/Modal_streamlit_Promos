@@ -531,7 +531,7 @@ def main(argv, get_data=True):
             df_imgs.to_csv(f'./data_retails/promos_home/df_promos_retail_{argv[1]}.csv')
 
     except Exception as e:
-        print(e)
+        print(f'Error: {e}')
 
 
 if __name__ == '__main__':

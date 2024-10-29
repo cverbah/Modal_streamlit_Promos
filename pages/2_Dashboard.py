@@ -32,14 +32,16 @@ except Exception as e:
 if 'tipo_oferta' in df.columns.tolist():
     with st.sidebar:
         st.title(':gear: Filtros')
+        st.subheader('Tabla:')
         # offer filters
         offer_type = df['tipo_oferta'].unique().tolist()
         offer_type.extend(['todas'])
-        select_offer = st.selectbox('Seleccione el tipo de oferta', offer_type, index=len(offer_type) - 1)
+        select_offer = st.selectbox('Seleccione el tipo de oferta:', offer_type, index=len(offer_type) - 1)
 
+        st.subheader('Gráficos:')
         # column filter
         col_types = ['categorias_en_promo', 'marcas_en_promo', 'publico_objetivo']
-        df_col = st.selectbox('Seleccione columna', col_types, index=len(col_types) - 1)
+        df_col = st.selectbox('Seleccione la columna que desea gráficar:', col_types, index=1)
 
         # dataframe filter
         if select_offer:
@@ -53,7 +55,7 @@ if 'tipo_oferta' in df.columns.tolist():
     try:
         col1, col2 = st.columns((0.8, 0.2), gap='small')
         if len(df_filtered) > 0:
-            st.subheader("DataFrame Filtrado:")
+            st.subheader("Tabla de datos:")
             st.dataframe(df_filtered)
 
             with col2:
@@ -69,7 +71,7 @@ if 'tipo_oferta' in df.columns.tolist():
             with grid[1]:
 
                 with st.spinner('Cargando gráficos...'):
-                    fig = plot_against_offer_type(df_filtered, df_col, top=5, height=450, width=600)
+                    fig = plot_against_offer_type(df_filtered, df_col, top=10, height=450, width=600)
                     st.plotly_chart(fig, theme="streamlit")
 
             #with col4:

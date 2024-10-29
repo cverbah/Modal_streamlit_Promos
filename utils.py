@@ -65,12 +65,14 @@ def analyze_data(df: pd.DataFrame):
     # json to cols
     df['descripcion_promo'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='promocion'))  #ok
     df['duracion_promo'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='duracion_promo')) #ok
+    df['duracion_promo'] = df['duracion_promo'].apply(json.dumps)
     df['descuentos_promo'] = df['descripcion_promo'].apply(lambda row: extract_discount(str(row)))
     df['descuentos_promo'] = df['descuentos_promo'].apply(lambda row: format_as_percentage(row))
     df['categorias_en_promo'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='categorias_en_promo'))
     df['marcas_en_promo'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='marcas_en_promo'))
     df['publico_objetivo'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='publico_objetivo'))
     df['productos_en_oferta'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='productos_en_oferta'))
+    df['productos_en_oferta'] = df['productos_en_oferta'].apply(json.dumps)
     df['cuotas_sin_interes'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='cuotas_sin_interes'))
     df['cupon_app'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='cupon_app'))
     df['promociones_envio'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='promociones_envio'))
