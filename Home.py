@@ -35,7 +35,7 @@ try:
         st.subheader("DataFrame:")
         st.dataframe(st.session_state.df)
 
-        st.subheader("DataFrame Stats:")
-        st.dataframe(st.session_state.df.describe())
+        #st.subheader("DataFrame Stats:")
+        #st.dataframe(st.session_state.df.describe())
 except Exception as e:
     st.error(f"Error: {e}. Check your uploaded dataset")

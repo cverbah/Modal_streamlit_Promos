@@ -12,7 +12,7 @@ import time
 
 
 st.set_page_config(
-    page_title="Images Analyst Testing 2",
+    page_title="Analista Promociones",
     page_icon=":robot_face:",
     layout="wide",
 )

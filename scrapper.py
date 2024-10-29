@@ -525,6 +525,7 @@ def main(argv, get_data=True):
             df_imgs = df_imgs[~df_imgs.nombre_promocion.isin(['flagged_as_blacklisted', ''])]  # filter out
             df_imgs = df_imgs.drop_duplicates().reset_index(drop=True)  # filter out
             df_imgs['datetime_checked'] = pd.to_datetime('today')
+            df_imgs['retail'] = argv[1]
             print('\n Df Head: ')
             print(df_imgs.head(10))
             df_imgs.to_csv(f'./data_retails/promos_home/df_promos_retail_{argv[1]}.csv')
