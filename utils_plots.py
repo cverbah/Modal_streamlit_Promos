@@ -57,7 +57,7 @@ def plot_against_offer_type(df, col, top=10, height=200, width=300):
     df_counter = df_counter.sort_values(by='total', ascending=True)
 
     aux = ' '.join(col.split('_'))
-    fig = px.bar(df_counter, x="total", y=f"{col}", height=height, width=width, title=f'Top {top}')
+    fig = px.bar(df_counter, x="total", y=f"{col}", height=height, width=width, title=f'Top {top}: {col}')
     return fig
 
         
