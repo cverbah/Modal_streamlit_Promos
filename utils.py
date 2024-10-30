@@ -62,7 +62,6 @@ def format_as_percentage(value):
 
 
 def analyze_data(df: pd.DataFrame):
-    #df['promo_analysis'] = df['url_img'].apply(lambda row: analyze_promo_v2(row))
     # json to cols
     df['descripcion_promo'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='promocion'))  #ok
     df['duracion_promo'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='duracion_promo')) #ok
@@ -78,12 +77,6 @@ def analyze_data(df: pd.DataFrame):
     df['cupon_app'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='cupon_app'))
     df['promociones_envio'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='promociones_envio'))
     df.drop(columns='promo_analysis', inplace=True)
-
-
-def submit_query():
-    """submits query"""
-    st.session_state.user_input = st.session_state.widget
-    st.session_state.widget = ''
 
 
 def analyze_promo_v2(image_path, format=True, model=gcp_model):
@@ -168,33 +161,3 @@ def execute_code(snippet, df: pd.DataFrame):
         return {}, f"Error: {e}"
 
 
-def format_pricing_table(df):
-    df = df.iloc[:, :9]
-    df.columns = (df.columns.
-                  str.replace(' ', '_').
-                  str.lower().
-                  str.normalize('NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8'))
-
-    df['sku'] = df['sku'].astype(str)
-    df['mas_bajo'] = df['mas_bajo'].apply(lambda row: int(row.replace('$ ', '').replace(',', '')))
-    df['mas_alto'] = df['mas_alto'].apply(lambda row: int(row.replace('$ ', '').replace(',', '')))
-    df['precio_mercado'] = df['precio_mercado'].apply(lambda row: int(row.replace('$ ', '').replace(',', '')))
-    df['precio_de_lista'] = df['precio_de_lista'].apply(lambda row: int(row.replace('$ ', '').replace(',', '')))
-    df = df.reset_index(drop=True)
-    return df
-
-
-def format_compete_table(df):
-    df.columns = (df.columns.
-                  str.replace(' ', '_').
-                  str.lower().
-                  str.normalize('NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8'))
-
-    df['sku_tienda'] = df['sku_tienda'].astype(str)
-    df['fecha'] = pd.to_datetime(df['fecha'])
-    #df['precio_normal'] = df['precio_normal'].apply(lambda row: int(row.replace('$ ', '').replace(',', '')))
-    #df['precio_final'] = df['precio_final'].apply(lambda row: int(row.replace('$ ', '').replace(',', '')))
-    #df['precio_tarjeta'] = df['precio_tarjeta'].apply(lambda row: int(row.replace('$ ', '').replace(',', '')))
-
-    df = df.reset_index(drop=True)
-    return df
