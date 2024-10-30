@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import os
 import numpy as np
-from utils import format_pricing_table, format_compete_table, parse_null_list
+from utils import parse_null_list
 from streamlit_extras.app_logo import add_logo
 from ast import literal_eval
 
