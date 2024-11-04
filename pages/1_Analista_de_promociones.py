@@ -43,7 +43,7 @@ try:
                     df_filtered = df[(df.tipo_oferta == select_offer)].reset_index(drop=True)
                 else:
                     df_filtered = df.reset_index(drop=True)
-                df_filtered.drop(columns=['datetime_checked'], inplace=True)
+                #df_filtered.drop(columns=['datetime_checked'], inplace=True)
 
     if (len(st.session_state.df) > 0) & (st.session_state.df_with_promo == False):
         st.markdown("<span style='font-size: 20px;'>1 - Aprete el botón para comenzar análisis de promociones</span>",
@@ -78,6 +78,7 @@ try:
             promotions = df_filtered['nombre_promocion'].tolist()
             select_promotion = st.selectbox('Seleccione la promoción:', promotions, index=0)
             url_image = df[df['nombre_promocion'] == select_promotion].url_img.tolist()[0]
+            st.write(url_image)
             try:
                 # Load image from URL
                 response = requests.get(url_image)

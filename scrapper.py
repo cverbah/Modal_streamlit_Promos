@@ -361,45 +361,69 @@ def get_bottom_carousel_paris(soup, tipo_oferta='lo_ultimo'):
     df = df.reset_index(drop=True)
     return df
 
-## falabella scrapping
-def has_specific_class_and_attribute_top_banner(tag, class_match='carousel-item', attribute='id', attribute_match='showcase-Showcase-'):
-    return (tag.has_attr('class') and any(class_match in cls for cls in tag['class'])) and \
-           (tag.has_attr(attribute) and attribute_match in tag[attribute])
 
-def has_specific_class_and_attribute_second_banner(tag, class_match='BannerCard-module', attribute='id', attribute_match='main-HoldingBanner'):
-    return (tag.has_attr('class') and any(class_match in cls for cls in tag['class'])) and \
-           (tag.has_attr(attribute) and attribute_match in tag[attribute])
+# falabella scrapping
+def get_imgs_banner_principal_falabella(soup, class_type='CarouselItemstyle', promo_type='ofertas_principales'):
+    assert promo_type == 'ofertas_principales' or promo_type == 'ofertas_secundarias', 'error'
+    dict_promos = {'ofertas_principales': 'showcase', 'ofertas_secundarias': 'carousel'}
+
+    carousel_items = soup.find_all(class_=lambda c: c and 'CarouselItemstyle' in c)
+    pos = 1
+    all_data = []
+    for item in carousel_items:
+        x = item.get('data-testid', '').split('-')[0]
+        if x == dict_promos[promo_type]:
+
+            if item.picture:
+                img_url = item.picture.find('source').get('srcset')
+                name = str(item.picture.find('img').get('alt')).lower()
+                data = save_promo(name, promo_type, pos, img_url)
+                all_data.append(data)
+
+                pos += 1
+
+    return pd.DataFrame(all_data)
 
 
-def has_specific_class_and_attribute_lower_grid(tag, class_match='grid-card', attribute='id', attribute_match='grid-card-'):
-    return (tag.has_attr('class') and any(class_match in cls for cls in tag['class'])) and \
-           (tag.has_attr(attribute) and attribute_match in tag[attribute])
+def get_imgs_banner_falabella_size(soup, class_type='BannerPowerCardstyle', cols=3):
+    try:
+        dict_cols = {3: 'three-columns',
+                     6: 'six-columns',
+                     12: 'twelve-columns'}
+        dict_size = {3: 'grid',
+                     6: 'banner_doble',
+                     12: 'banner_largo'}
 
+        # Find all elements with both class substrings
+        banner_items = soup.find_all(
+            lambda tag: tag.get('class') and
+                        any(class_type in cls for cls in tag['class']) and
+                        any(dict_cols[cols] in cls for cls in tag['class'])
+        )
 
-def has_specific_class_and_attribute_lowest_carousel(tag, class_match='CategoryCarousel', attribute='id', attribute_match='main-CategoryCarousel'):
-    return (tag.has_attr('class') and any(class_match in cls for cls in tag['class'])) and \
-           (tag.has_attr(attribute) and attribute_match in tag[attribute])
+        pos = 1
+        all_data = []
+        for item in banner_items:
+            data_test_id_prefix = item.get('data-testid', '').split('-')[0]
+            if data_test_id_prefix == 'power':
+                if item.picture:
+                    # print(item.prettify())
+                    promo_type = dict_size[cols]
+                    img_url = item.picture.find('source').get('srcset')
+                    name = str(item.picture.find('img').get('alt')).lower()
+                    # Save promo data
+                    data = save_promo(name, promo_type, pos, img_url)
+                    all_data.append(data)
+                    pos += 1
 
+        return pd.DataFrame(all_data)
 
-def get_df_with_imgs(all_sections: list):
-    dict_sale_type ={1: 'ofertas_principales', 2: 'ofertas_secundarias', 3: 'grid_ofertas', 4:'lo_ultimo'}
-    data = []
-    for idx, containers in enumerate(all_sections, start=1):
-        for pos, element in enumerate(containers, start=1):
-            if element.picture:
-                name = str(element.picture.find('img').get('alt')).lower()
-                tipo_oferta = dict_sale_type[idx]
-                url = element.picture.find('source').get('srcset')
-                img_url = ''.join(url.split('?disable')[0])
-                promo = save_promo(name, tipo_oferta, pos, img_url)
-                data.append(promo)
-
-    df = pd.DataFrame(data).drop_duplicates()
-    return df
+    except Exception as e:
+        print(f'Error:{e}')
 
 
 blacklist = ['falabella', 'sodimac', 'tottus', 'linio', 'cmr', 'nosotros', 'ecosistema', 'seguros', 'puntospesos', 'paris', 'paris.cl', 'lider', 'lider.cl',
-             'walmart']
+             'walmart', 'descubre todo lo nuevo']
 def flag_blacklist(row, blacklist=blacklist):
     row = str(row)
     tokens = re.findall(r"(?=("+'|'.join(blacklist)+r"))", row)
@@ -480,13 +504,13 @@ def main(argv, get_data=True):
         soup = BeautifulSoup(website_code, 'html.parser')
         if get_data:
             if aux == 1:  # falabella
-                top_banner = soup.find_all(has_specific_class_and_attribute_top_banner)
-                second_banner = soup.find_all(has_specific_class_and_attribute_second_banner)
-                grid = soup.find_all(has_specific_class_and_attribute_lower_grid)
-                lowest_carousel = soup.find_all(has_specific_class_and_attribute_lowest_carousel)
+                top_banner = get_imgs_banner_principal_falabella(soup)
+                medium_banners = get_imgs_banner_falabella_size(soup, cols=6)
+                grid = get_imgs_banner_falabella_size(soup, cols=3)
+                large_banners = get_imgs_banner_falabella_size(soup, cols=12)
 
-                all_sections = [top_banner, second_banner, grid, lowest_carousel]
-                df_imgs = get_df_with_imgs(all_sections)
+                df_imgs = pd.concat([top_banner,large_banners, medium_banners, grid])
+                df_imgs = df_imgs.reset_index(drop=True)
 
             if aux == 2:  # paris
                 top_banner = get_top_banner_promos_paris(soup, tipo_oferta='ofertas_principales', class_tag="flex-none rounded-lg relative")
