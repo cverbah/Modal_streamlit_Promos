@@ -436,7 +436,7 @@ def get_imgs_banner_falabella_size(soup, class_type='BannerPowerCardstyle', cols
 
 
 blacklist = ['falabella', 'sodimac', 'tottus', 'linio', 'cmr', 'nosotros', 'ecosistema', 'seguros', 'puntospesos', 'paris', 'paris.cl', 'lider', 'lider.cl',
-             'walmart', 'descubre todo lo nuevo']
+             'walmart', 'descubre todo lo nuevo', 'cencosud', 'puntos']
 def flag_blacklist(row, blacklist=blacklist):
     row = str(row)
     tokens = re.findall(r"(?=("+'|'.join(blacklist)+r"))", row)
