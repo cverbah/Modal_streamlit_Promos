@@ -41,9 +41,9 @@ def scroll_all_website(driver, scroll_increment=100, scroll_delay=0.25,
             scroll_delay = delay_speed_up
 
 
-def scroll_all_website_jumbo(driver, scroll_delay=0.7, start_delay=80):
-    popup = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.CLASS_NAME, 'popover-delivery-close')))
-    popup.click()
+def scroll_all_website_jumbo(driver, scroll_delay=0.7, start_delay=10):
+    #popup = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.CLASS_NAME, 'popover-delivery-close')))
+    #popup.click()
 
     body = driver.find_element(By.TAG_NAME, "body")
     page_height = int(driver.execute_script("return document.body.scrollHeight")) # not reliable
@@ -66,7 +66,6 @@ def scroll_all_website_jumbo(driver, scroll_delay=0.7, start_delay=80):
         print(f'aux scanned: {scanned:.2%}')
 
 
-
 def save_promo(name, tipo_oferta, pos, img_url):
     data = {}
     data['nombre_promocion'] = unidecode(name)
@@ -76,8 +75,8 @@ def save_promo(name, tipo_oferta, pos, img_url):
     return data
 
 
-## jumbo
-def get_top_banner_promos_jumbo(soup, tipo_oferta='ofertas_principales'):
+# jumbo
+def get_top_banner_promos_jumbo(soup, tipo_oferta='ofertas_top'):
     top_banner = soup.find_all("a", {"class": 'new-home-hero-sliderv2-link'})
     data = []
     for pos, element in enumerate(top_banner, start=1):
@@ -89,44 +88,57 @@ def get_top_banner_promos_jumbo(soup, tipo_oferta='ofertas_principales'):
             data.append(promo)
 
     df = pd.DataFrame(data)
-    df = df.drop_duplicates().reset_index(drop=True)
+    df = df.drop_duplicates(subset='nombre_promocion').reset_index(drop=True)
     return df
 
 
-def get_secondary_promos_jumbo(soup):
-    timer_banner = soup.find_all("div", {"class": 'banner-timer-image'})
-    categories_banners = soup.find_all("div", {"class": "section-banner-categories"})
-    left_side = categories_banners[0].find_all("div", {"class": 'banner-categories-left'})
-    right_side = categories_banners[0].find_all("div", {"class": 'banner-categories-right'})
-    imgs_right = right_side[0].find_all("a", {"class": 'double-image-content'})
-    shorts_banner_top = soup.find_all("section", {"class":"short-banner"})[:2]
+def get_top_promos_jumbo(soup, tipo_oferta='ofertas_prime'):
+    top_banner = soup.find_all("a", {"class": 'slider-banner-offers-content-image'})
+    data = []
+    for pos, element in enumerate(top_banner, start=1):
+        if element.picture:
+            name = str(element.picture.find('img').get('alt')).lower()
+            formatted_name = '-'.join(name.split('-')[:2])
+            img_url = element.picture.find('img').get('src')
+            promo = save_promo(formatted_name, tipo_oferta, pos, img_url)
+            data.append(promo)
 
-    all_sections = [timer_banner, left_side, imgs_right, shorts_banner_top]
-    all_sections = [i for sublist in all_sections for i in sublist] #flatten
+    df = pd.DataFrame(data)
+    df = df.drop_duplicates(subset='nombre_promocion').reset_index(drop=True)
+    return df
+
+
+def get_secondary_promos_jumbo(soup, tipo_oferta='ofertas_middle'):
+    timer_banner = soup.find_all("div", {"class": 'banner-timer-image'})
+    shorts_banner_top = soup.find_all("section", {"class": "short-banner"})[:2]
+
+    all_sections = [timer_banner, shorts_banner_top]
+    all_sections = [i for sublist in all_sections for i in sublist]  # flatten
     data = []
     for pos, element in enumerate(all_sections, start=1):
-
         name = str(element.find('img').get('alt')).lower()
         formatted_name = '-'.join(name.split('-')[:2])
         img_url = element.find('img').get('src')
-        tipo_oferta = element.get('class')[0]
+        # tipo_oferta = element.get('class')[0]
         promo = save_promo(formatted_name, tipo_oferta, pos, img_url)
         data.append(promo)
 
     df = pd.DataFrame(data)
-    df = df.drop_duplicates().reset_index(drop=True)
+    df = df.drop_duplicates(subset='nombre_promocion').reset_index(drop=True)
     return df
 
 
-def get_bottom_offers_jumbo(soup, tipo_oferta='ofertas_final_pag'):
+def get_grid_offers_jumbo(soup, tipo_oferta='ofertas_grid'):
     bottom_long_banners = soup.find_all("section", {"class": "short-banner"})[2:]
     bottom_carousel = soup.find_all("div", {"class": "slider-banner-offers-wrap-v2"})
     bottom_categories_banners = soup.find_all("div", {"class": "section-banner-categories"})[2]
     bottom_left_side = bottom_categories_banners.find_all("div", {"class": 'banner-categories-left'})
     bottom_right_side = bottom_categories_banners.find_all("div", {"class": 'banner-categories-right'})
     bottom_promos = soup.find_all("a", {"class": "slider-banner-products-wrap"})
+    bottom_doubles = soup.find_all("div", {"class": "section-banner-categories"})
 
-    all_sections = [bottom_long_banners, bottom_carousel, bottom_left_side, bottom_right_side, bottom_promos]
+    all_sections = [bottom_long_banners, bottom_carousel, bottom_left_side, bottom_right_side,
+                    bottom_promos, bottom_doubles]
     all_sections = [i for sublist in all_sections for i in sublist]  # flatten
     data = []
     position = 0
@@ -141,11 +153,12 @@ def get_bottom_offers_jumbo(soup, tipo_oferta='ofertas_final_pag'):
             data.append(promo)
 
         df = pd.DataFrame(data)
-        df = df.drop_duplicates().reset_index(drop=True)
+        df = df.drop_duplicates(subset='nombre_promocion').reset_index(drop=True)
+
     return df
 
 
-## lider - catalogo (potencialmente identico a supermercado. Por ahora voy a separarlos
+# lider - catalogo (potencialmente identico a supermercado. Por ahora voy a separarlos
 def has_specific_class_and_attribute_top_banner_lider_catalogo(tag, class_match='banners-home', attribute='id', attribute_match='home-banner-'):
     return (tag.has_attr('class') and any(class_match in cls for cls in tag['class'])) and \
            (tag.has_attr(attribute) and attribute_match in tag[attribute])
@@ -230,7 +243,7 @@ def get_bottom_offers_lider_catalogo(soup, tipo_oferta='ofertas_final_pag'):
     return df
 
 
-## lider - supermarket scrapping
+#  lider - supermarket scrapping
 def has_specific_class_and_attribute_top_banner_lider_supermarket(tag, class_match='banners-home', attribute='id', attribute_match='home-banner-'):
     return (tag.has_attr('class') and any(class_match in cls for cls in tag['class'])) and \
            (tag.has_attr(attribute) and attribute_match in tag[attribute])
@@ -538,10 +551,11 @@ def main(argv, get_data=True):
 
             if aux == 5:  # jumbo
                 top_banner = get_top_banner_promos_jumbo(soup, tipo_oferta='ofertas_principales')
-                secondary_promos = get_secondary_promos_jumbo(soup)
-                bottom_offers = get_bottom_offers_jumbo(soup, tipo_oferta='ofertas_final_pag')
+                top_offers = get_top_promos_jumbo(soup, tipo_oferta='ofertas_prime').iloc[:4]
+                secondary_promos = get_secondary_promos_jumbo(soup, tipo_oferta='ofertas_middle')
+                grid_offers = get_grid_offers_jumbo(soup, tipo_oferta='ofertas_grid')
 
-                df_imgs = pd.concat([top_banner, secondary_promos, bottom_offers])
+                df_imgs = pd.concat([top_banner, top_offers, secondary_promos, grid_offers])
                 df_imgs = df_imgs.reset_index(drop=True)
 
 
