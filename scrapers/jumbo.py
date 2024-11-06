@@ -10,16 +10,17 @@ def save_promo(name, tipo_oferta, pos, img_url):
     data['url_img'] = img_url
     return data
 
+
 class JumboScraper:
     def __init__(self, soup):
         """
-        Initializes the scraper with a BeautifulSoup object.
+        initializes the scraper with a BeautifulSoup object.
         """
         self.soup = soup
 
     def get_top_banner_promos(self, tipo_oferta='ofertas_top'):
         """
-        Extracts the top banner promotions.
+        extracts the top banner promotions.
         """
         top_banner = self.soup.find_all("a", {"class": 'new-home-hero-sliderv2-link'})
         data = []
@@ -36,7 +37,7 @@ class JumboScraper:
 
     def get_top_promos(self, tipo_oferta='ofertas_prime'):
         """
-        Extracts the top promotions.
+        extracts the top promotions (ofertas prime).
         """
         top_banner = self.soup.find_all("a", {"class": 'slider-banner-offers-content-image'})
         data = []
@@ -53,7 +54,7 @@ class JumboScraper:
 
     def get_secondary_promos(self, tipo_oferta='ofertas_middle'):
         """
-        Extracts the secondary promotions.
+        extracts the secondary promotions.
         """
         timer_banner = self.soup.find_all("div", {"class": 'banner-timer-image'})
         shorts_banner_top = self.soup.find_all("section", {"class": "short-banner"})[:2]
@@ -73,7 +74,7 @@ class JumboScraper:
 
     def get_grid_offers(self, tipo_oferta='ofertas_grid'):
         """
-        Extracts the grid offers.
+        extracts the grid format offers.
         """
         bottom_long_banners = self.soup.find_all("section", {"class": "short-banner"})[2:]
         bottom_carousel = self.soup.find_all("div", {"class": "slider-banner-offers-wrap-v2"})

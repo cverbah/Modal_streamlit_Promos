@@ -35,9 +35,13 @@ def plot_col_against_date(df, col, plot_type='bar', top=5, height=400, width=600
 
 
 def plot_wordcloud(df, col, color='black', max_words=20, height=200):
+    """
+    Plots a wordcloud based on a dataframe and a column that contains lists with elements
+    default color='black', max_words=20, height=200
+    """
     assert col in ['categorias_en_promo', 'marcas_en_promo', 'publico_objetivo'], 'wrong key'
     keywords = df[col].tolist()
-    keywords = list(filter(lambda x: x is not None, keywords)) #filter
+    keywords = list(filter(lambda x: x is not None, keywords))  # filter empty lists
     keywords_flatten = [val for sublist in keywords for val in sublist]
     keywords_flatten_format = list(map(lambda x: unidecode(x.lower()), keywords_flatten))
     keywords_promo_all_tokens = ' '.join(keywords_flatten_format)
@@ -49,9 +53,13 @@ def plot_wordcloud(df, col, color='black', max_words=20, height=200):
 
 
 def plot_against_offer_type(df, col, top=10, height=200, width=300):
+    """
+        Plots a barplot based on a dataframe and a column that contains lists with elements
+        default top 10 elements,height=200, width=300
+        """
     assert col in ['categorias_en_promo', 'marcas_en_promo', 'publico_objetivo'], 'wrong key'
     keywords = df[col].tolist()
-    keywords = list(filter(lambda x: x is not None, keywords))  # filter
+    keywords = list(filter(lambda x: x is not None, keywords))  # filter empty lists
     keywords_flatten = [val for sublist in keywords for val in sublist]
     keywords_flatten_format = list(map(lambda x: unidecode(x.lower()), keywords_flatten))
     col_counter = Counter(keywords_flatten_format).most_common()[:top]

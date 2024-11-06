@@ -12,7 +12,6 @@ st.set_page_config(
     page_icon=":robot_face:",
     layout="wide",
 )
-#add_logo("https://www.python.org/static/community_logos/python-powered-w-100x40.png", height=0)
 st.title('Análisis de promociones')
 
 uploaded_file = st.file_uploader("Seleccione un archivo CSV con el retail a analizar", type=["csv"])
@@ -22,11 +21,12 @@ try:
         file_details = {"FileName": uploaded_file.name, "FileType": uploaded_file.type, } #"FileSize": uploaded_file.size
         st.write(file_details)
 
+        # save file as temp.csv
         with open("temp.csv", "wb") as f:
             f.write(uploaded_file.getvalue())
         temp_location = os.path.abspath("temp.csv")
 
-        #Dataframe formatting
+        # read uploaded csv file adn store as dataframe
         if 'df' not in st.session_state:
             if uploaded_file.name.endswith('.csv'):
                 df = pd.read_csv(temp_location, index_col=0)
@@ -35,7 +35,5 @@ try:
         st.subheader("DataFrame:")
         st.dataframe(st.session_state.df)
 
-        #st.subheader("DataFrame Stats:")
-        #st.dataframe(st.session_state.df.describe())
 except Exception as e:
     st.error(f"Error: {e}. Check your uploaded dataset")

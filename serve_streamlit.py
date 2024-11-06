@@ -4,6 +4,7 @@ from pathlib import Path
 from modal import Image, Mount, App, web_server
 import db_dtypes
 
+# docker image and libraries
 image = (Image.debian_slim(python_version="3.11.9")
          .pip_install("streamlit==1.36.0", "numpy==1.26.4", "pandas==1.5.3", "openpyxl==3.1.2",
                       "matplotlib==3.7.1", "python-dotenv==1.0.0",
@@ -16,6 +17,7 @@ image = (Image.debian_slim(python_version="3.11.9")
                       "langchain-experimental==0.0.64", "streamlit-modal==0.1.2")
          )
 
+# Modal app
 app = App(name="streamlit-promociones-v1", image=image)
 
 # folders and files mount

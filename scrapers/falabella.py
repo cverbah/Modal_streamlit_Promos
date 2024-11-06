@@ -13,11 +13,14 @@ def save_promo(name, tipo_oferta, pos, img_url):
 
 class FalabellaScraper:
     def __init__(self, soup):
+        """
+        initializes the scraper with a BeautifulSoup object.
+        """
         self.soup = soup
 
     def get_imgs_banner_principal_falabella(self, class_type='CarouselItemstyle', promo_type='ofertas_principales'):
         """
-        Extracts the main or secondary promotion images from the HTML.
+        extracts the promotions from the main banner
         """
         assert promo_type in ['ofertas_principales', 'ofertas_secundarias'], 'Invalid promo_type'
 
@@ -40,7 +43,7 @@ class FalabellaScraper:
 
     def get_imgs_banner_falabella_size(self, class_type='BannerPowerCardstyle', cols=3):
         """
-        Extracts promotional banner images from the HTML based on size.
+        extracts promotional banner images based on size: (3,6,12).
         """
         try:
             dict_cols = {3: 'three-columns', 6: 'six-columns', 12: 'twelve-columns'}

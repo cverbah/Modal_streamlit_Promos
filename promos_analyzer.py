@@ -16,8 +16,9 @@ def main(argv):
     print(df)
     print('analyzing...')
     start = time.time()
+    # analyze imgs with ai assistant
     df['promo_analysis'] = df['url_img'].apply(lambda row: analyze_promo_v2(row))
-    # json to cols
+    # add new columns with info extracted from promo_analysis
     df['descripcion_promo'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='promocion'))
     df['duracion_promo'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='duracion_promo'))
     df['descuentos_promo'] = df['descripcion_promo'].apply(lambda row: extract_discount(str(row)))
@@ -30,6 +31,7 @@ def main(argv):
     df['cupon_app'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='cupon_app'))
     df['promociones_envio'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='promociones_envio'))
     df.drop(columns='promo_analysis', inplace=True)
+    # save as csv
     df.to_csv(f'./data_retails/promos_home_analysis/df_promos_retail_analysis_{argv[1]}.csv')
     total = round(time.time() - start,2)
     print(f'time taken: {total} secs')

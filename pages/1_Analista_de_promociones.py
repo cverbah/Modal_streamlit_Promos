@@ -23,6 +23,7 @@ try:
         st.session_state.df_with_promo = False
 
     if st.session_state.df_with_promo:
+        # filters
         with st.sidebar:
             st.title(':gear: Filtros')
             st.subheader('Tabla:')
@@ -38,7 +39,6 @@ try:
 
             # dataframe filter
             if select_offer:
-
                 if select_offer != 'todas':
                     df_filtered = df[(df.tipo_oferta == select_offer)].reset_index(drop=True)
                 else:
@@ -51,12 +51,13 @@ try:
 
         if st.button('Analizar'):
             with st.spinner('Analizando promociones ...'):
+                # analyze each url image from table with ai assistant
                 st.session_state.df['promo_analysis'] = st.session_state.df['url_img'].apply(lambda row:
                                                                                              analyze_promo_v2(row,
                                                                                                               format=True))
+                # add columns with analyzed data
                 analyze_data(st.session_state.df)
                 st.subheader("DataFrame:")
-                #st.dataframe(st.session_state.df)
                 st.session_state.df_with_promo = True
                 if len(df_filtered) > 0:
                     st.dataframe(df_filtered)
@@ -74,7 +75,9 @@ try:
         tab1, tab2 = st.tabs(["Imágenes Promociones", "Gáficos"])
 
         with tab1:
+
             st.subheader("Imágenes promociones:")
+            # select promotion to display
             promotions = df_filtered['nombre_promocion'].tolist()
             select_promotion = st.selectbox('Seleccione la promoción:', promotions, index=0)
             url_image = df[df['nombre_promocion'] == select_promotion].url_img.tolist()[0]
@@ -95,13 +98,14 @@ try:
             img_aux = False
             if width > 2000:
                 img_aux = True
-
+            # display image from promotion
             st.image(img, caption=f"Promoción: {select_promotion}. {img_dims}", use_column_width=img_aux)
 
         with tab2:
             rows = st.columns(2)
             grid = [col.container(height=500) for col in rows]
             df_filtered_problems = df_filtered.dropna(subset=['descripcion_promo'])
+            # wordcloud
             with grid[0]:
                 with st.spinner('Cargando gráficos...'):
                     st.markdown(f"<h1 style='text-align: left;font-size: 17px;'>WordCloud: {df_col}</h1>",
@@ -109,6 +113,7 @@ try:
 
                     fig = plot_wordcloud(df_filtered_problems, df_col, color='white', max_words=20)
                     st.pyplot(fig)
+            # bar plot
             with grid[1]:
                 with st.spinner('Cargando gráficos...'):
                     fig = plot_against_offer_type(df_filtered_problems, df_col, top=10, height=450, width=600)
