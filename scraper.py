@@ -20,8 +20,8 @@ from scrapers.jumbo import JumboScraper
 
 
 def scroll_all_website(driver, scroll_increment=100, scroll_delay=0.25,
-                       increment_speed_up=300, delay_speed_up=1): # scroll from top to bottom
-
+                       increment_speed_up=300, delay_speed_up=1, start_delay=60): # scroll from top to bottom
+    time.sleep(start_delay)
     page_height = driver.execute_script("return document.body.scrollHeight")
     print(f'page length: {page_height}')
     current_position = 0
