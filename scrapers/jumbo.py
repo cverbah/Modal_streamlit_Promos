@@ -1,14 +1,6 @@
 import pandas as pd
 from unidecode import unidecode
-
-
-def save_promo(name, tipo_oferta, pos, img_url):
-    data = {}
-    data['nombre_promocion'] = unidecode(name)
-    data['tipo_oferta'] = tipo_oferta
-    data['posicion'] = pos
-    data['url_img'] = img_url
-    return data
+from scrapers.falabella import save_promo
 
 
 class JumboScraper:
