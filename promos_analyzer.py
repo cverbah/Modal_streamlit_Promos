@@ -17,7 +17,6 @@ def analyze_promo_v2_wrapper(row):
         return {'error': str(e), 'image_path': row}
 
 
-# Configura el paralelismo
 def parallel_process(df, func, workers=4):
     """
     Paraleliza la ejecución de una función sobre un DataFrame usando threads
