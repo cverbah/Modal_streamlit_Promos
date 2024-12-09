@@ -47,7 +47,7 @@ def scroll_all_website(driver, scroll_increment=100, scroll_delay=0.25,
             scroll_delay = delay_speed_up
 
 
-def scroll_all_website_jumbo(driver, scroll_delay=0.7, start_delay=10):
+def scroll_all_website_jumbo(driver, scroll_delay=0.7, start_delay=25):
     """
     scrolls Jumbo website from top to bottom to active all the imgs
     """
