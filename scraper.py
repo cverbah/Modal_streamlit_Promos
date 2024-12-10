@@ -218,6 +218,8 @@ def main(argv, get_data=True):
             print(df_imgs.head(10))
             # save as csv
             df_imgs.to_csv(f'./data_retails/promos_home/df_promos_retail_{argv[1]}.csv')
+            # save as json
+            df_imgs.to_json(f'./data_retails/promos_home/df_promos_retail_{argv[1]}.json', orient="records", indent=4)
 
     except Exception as e:
         print(f'Error: {e}')
