@@ -5,6 +5,7 @@ import pandas as pd
 from PIL import Image, UnidentifiedImageError
 import requests
 from io import BytesIO
+from concurrent.futures import ThreadPoolExecutor
 
 st.set_page_config(
     page_title="Analista Promociones",
@@ -13,6 +14,23 @@ st.set_page_config(
 )
 
 st.title(':robot_face: Analista de  Promociones')
+
+
+def analyze_promo_v2_wrapper(row):
+    try:
+        return analyze_promo_v2(image_path=row)
+    except Exception as e:
+        print(f"Error processing {row}: {e}")
+        return {'error': str(e), 'image_path': row}
+
+
+def parallel_process(df, func, workers=4):
+    """
+    Paraleliza la ejecución de una función sobre un DataFrame usando threads
+    """
+    with ThreadPoolExecutor(max_workers=workers) as executor:
+        results = list(executor.map(func, df['url_img']))
+    return results
 
 try:
     with st.spinner('Cargando datos...'):
@@ -52,9 +70,11 @@ try:
         if st.button('Analizar'):
             with st.spinner('Analizando promociones ...'):
                 # analyze each url image from table with ai assistant
-                st.session_state.df['promo_analysis'] = st.session_state.df['url_img'].apply(lambda row:
-                                                                                             analyze_promo_v2(row,
-                                                                                                              format=True))
+                #st.session_state.df['promo_analysis'] = st.session_state.df['url_img'].apply(lambda row:
+                #                                                                             analyze_promo_v2(row,
+                #                                                                                              format=True))
+                st.session_state.df['promo_analysis'] = parallel_process(st.session_state.df,
+                                                                         analyze_promo_v2_wrapper, workers=8)
                 # add columns with analyzed data
                 analyze_data(st.session_state.df)
                 st.subheader("DataFrame:")
