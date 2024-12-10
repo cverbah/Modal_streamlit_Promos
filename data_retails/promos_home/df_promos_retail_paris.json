@@ -1,0 +1,370 @@
+[
+    {
+        "nombre_promocion":"hasta 50% perfumes grandes marcas",
+        "tipo_oferta":"ofertas_principales",
+        "posicion":1,
+        "url_img":"https:\/\/cms-paris.ecomm.cencosud.com\/cms\/cl\/ecommerce-content-assets\/view_version\/675754bb72b57f1e85324c3d\/f4462767-ffc1-48dd-9465-82f00d000288.webp",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"hasta 50% vestuario mujer hombre infantil. productos seleccionados",
+        "tipo_oferta":"ofertas_principales",
+        "posicion":2,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/carrusel_banner_navidad_10dic24_vestuario_desk.jpg?v=2",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"videojuegos",
+        "tipo_oferta":"ofertas_principales",
+        "posicion":3,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/carrusel_banner_navidad_10dic24_videojuego_desk.jpg?v=1",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"zapatillas",
+        "tipo_oferta":"ofertas_principales",
+        "posicion":4,
+        "url_img":"https:\/\/cms-paris.ecomm.cencosud.com\/cms\/cl\/ecommerce-content-assets\/view_version\/675754bb72b57f1e85324c3d\/5de518b1-a887-455d-a2ee-084f962c2a9b.webp",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"evento apple",
+        "tipo_oferta":"ofertas_principales",
+        "posicion":5,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/carrusel_banner_navidad_10dic24_celulares_desk.webp",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"computacion",
+        "tipo_oferta":"ofertas_principales",
+        "posicion":6,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/carrusel_banner_navidad_10dic24_computacion_desk.jpg?v=1",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"television",
+        "tipo_oferta":"ofertas_principales",
+        "posicion":7,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/carrusel_banner_navidad_10dic24_tv_desk.jpg?v=1",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"linea blanca",
+        "tipo_oferta":"ofertas_principales",
+        "posicion":8,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/carrusel_banner_navidad_10dic24_lb_desk.webp",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"ofertas de smartwatch en navidad",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":1,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/destacado_huincha_navidad_10dic24_smartwatch_desk.webp?v=2",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"ofertas de colchones en navidad",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":3,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/destacado_caluga_navidad_10dic24_colchones.webp?v=1",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"hasta 40% dcto en minicomponentes",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":4,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/destacado_caluga_navidad_10dic24_audio.webp?v=1",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"hasta 50% cocina",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":5,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/destacado_caluga_navidad_10dic24_cocina.webp?v=1",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"ofertas de batidoras y licuadoras",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":6,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/destacado_caluga_navidad_10dic24_electro.webp?v=1",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"hasta 50% dcto vestuario",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":8,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/destacado_banner_navidad_10dic24_mkpvestuario.webp?v=1",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"ofertas de juegos de comedor en navidad",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":9,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/destacado_caluga_navidad_10dic24_mkpcomedores.webp?v=1",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"hasta 50% dcto jugueteria",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":10,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/destacado_caluga_navidad_10dic24_mkpjuguetes.webp?v=1",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"clima en ",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":11,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/destacado_caluga_navidad_10dic24_clima_desk.webp",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"50% de dcto en vestuario, faldas y shorts mujer",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":13,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/mundo_banner_navidad_10dic24_mujer.webp?v=1",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"oferta sets de belleza",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":14,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/mundo_caluga_navidad_10dic24_belleza.webp?v=1",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"50 de dcto en vestuario de hombre",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":15,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/mundo_caluga_navidad_10dic24_hombre.webp?v=1",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"hasta 50% en vestuario deportivo",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":16,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/mundo_caluga_navidad_10dic24_deporte.webp?v=1",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"hasta 50% de dcto en vestuario infantil",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":17,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/mundo_caluga_navidad_10dic24_infantil.webp?v=1",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"ofertas de proteccion solar en navidad",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":19,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/mundo_banner_navidad_10dic24_dermo.webp?v=1",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"hasta 50% anteojos de sol",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":20,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/mundo_caluga_navidad_10dic24_mkpanteojos.webp?v=1",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"hasta 30% dcto consolas",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":21,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/mundo_caluga_navidad_10dic24_mkpvj.webp?v=1",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"regalos de 0 a 2 anos",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":23,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/btn_caluga_navidad_20nov24_0a2_desk.webp?v=3",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"regalos de 3 a 5 anos",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":24,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/btn_caluga_navidad_20nov24_3a5_desk.webp?v=3",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"regalos de 6 a 9 anos",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":25,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/btn_caluga_navidad_20nov24_6a9_desk.webp?v=3",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"regalos de +10 anos",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":26,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/btn_caluga_navidad_20nov24_mas10_desk.webp?v=3",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"regalos para ella",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":28,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/btn_caluga_navidad_20nov24_ella.png?v=4",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"regalos para el",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":29,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/btn_caluga_navidad_20nov24_el.webp?v=6",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"regalos para compartir",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":30,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/btn_caluga_navidad_20nov24_compartir.webp?v=7",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"amigo secreto",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":31,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/btn_caluga_navidad_20nov24_amigosecreto.webp?v=6",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"regalos hasta $20.000",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":33,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/btn_caluga_navidad_20nov24_hasta20.webp?v=4",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"regalos $20.000 - $40.000",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":34,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/btn_caluga_navidad_20nov24_20a40.webp?v=3",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"regalos $40.000 - $60.000",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":35,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/btn_caluga_navidad_20nov24_40a60.webp?v=4",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"regalos $60.000 - $100.000",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":36,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/btn_caluga_navidad_20nov24_60a100.webp?v=5",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"regalos + $100.000",
+        "tipo_oferta":"grid_ofertas",
+        "posicion":37,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/btn_caluga_navidad_20nov24_mas100.webp?v=4",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"jumbo prime",
+        "tipo_oferta":"lo_ultimo",
+        "posicion":1,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/novedades_caluga_navidad_10dic24_jumboprime.webp?v=1",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"dior",
+        "tipo_oferta":"lo_ultimo",
+        "posicion":2,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/_novedades_caluga_navidad_10dic24_dior.webp?v=1",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"farm rio",
+        "tipo_oferta":"lo_ultimo",
+        "posicion":3,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/novedades_caluga_navidad_10dic24_farmrio.webp?v=1",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"concurso flex",
+        "tipo_oferta":"lo_ultimo",
+        "posicion":4,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/_novedades_caluga_navidad_10dic24_flex.webp?v=1",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"maria guldman para alaniz",
+        "tipo_oferta":"lo_ultimo",
+        "posicion":5,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/novedades_caluga_navidad_10dic24_mariaguldman.webp?v=1",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"aromatizadores",
+        "tipo_oferta":"lo_ultimo",
+        "posicion":6,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/novedades_caluga_navidad_10dic24_aromatizadores.webp?v=1",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"night squad opposite",
+        "tipo_oferta":"lo_ultimo",
+        "posicion":7,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_tarjeta\/2024\/novedades_caluga_g_19nov24_opposite.webp?v=1",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    },
+    {
+        "nombre_promocion":"pandora",
+        "tipo_oferta":"lo_ultimo",
+        "posicion":8,
+        "url_img":"https:\/\/cl-paris-media-hub.ecomm.cencosud.com\/files\/home\/home_navidad\/2024\/novedades_caluga_navidad_10dic24_pandora.webp?v=1",
+        "datetime_checked":1733837324459,
+        "retail":"paris"
+    }
+]
